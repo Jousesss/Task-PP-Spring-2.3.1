@@ -47,12 +47,14 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public Optional<User> findUser(String email) {
-        User userFromBD = null;
+        User userFromBD;
 
         try {
             TypedQuery<User> queryJPQL = entityManager.createQuery(FIND_BY_EMAIL_QUERY, User.class);
             queryJPQL.setParameter("email", email);
             userFromBD = queryJPQL.getSingleResult();
+        } catch (NoResultException e) {
+            return Optional.empty();
         } catch (DataAccessException e) {
             throw new RuntimeException("Something went wrong in method findUser(long id)", e);
         }

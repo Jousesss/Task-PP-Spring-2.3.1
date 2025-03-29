@@ -44,6 +44,11 @@
     <!-- Форма для сохранения данных -->
     <form th:method="PUT" id="save-form"
           th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+
+        <p style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
+        <p style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</p>
+        <p style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</p>
+
         <table>
             <thead>
             <tr>
