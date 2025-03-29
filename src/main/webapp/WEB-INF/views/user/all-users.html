@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+    <style>
+        table {
+            width: 25%; /* Ширина таблицы */
+            border-collapse: collapse;
+            margin: 0 auto; /* Центрируем таблицу с отступом сверху */
+            vertical-align: center;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #000000; /* Светло-серая граница */
+            background-color: #d6d6d6;
+        }
+    </style>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Age</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td> <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getUsername()}">username</a> </td>
+        <td th:text="${user.getAge()}">age</td>
+        <td th:text="${user.getEmail()}">email</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

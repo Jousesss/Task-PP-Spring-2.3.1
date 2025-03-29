@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New user</title>
+    <style>
+        html, body {
+            height: 100%; /* Чтобы body занимал всю высоту */
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Центрируем по горизонтали */
+            align-items: center; /* Центрируем по вертикали */
+        }
+
+        table {
+            width: 25%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #000000;
+            background-color: #d6d6d6;
+        }
+
+        /* Контейнер для кнопок */
+        .button-container {
+            display: flex;
+            justify-content: center; /* Центрируем кнопки по горизонтали */
+            gap: 30px; /* Расстояние между кнопками 30px */
+            margin-top: 20px;
+        }
+
+        .button-container input {
+            padding: 10px 20px;
+            width: 150px; /* Ширина кнопок */
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <!-- Форма для сохранения данных -->
+    <form th:method="POST" id="create-form"
+          th:action="@{/users}" th:object="${user}">
+        <table>
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Age</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" th:field="*{username}"/></td>
+                <td><input type="number" th:field="*{age}"/></td>
+                <td><input type="email" th:field="*{email}"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <!-- Контейнер для кнопок -->
+    <div class="button-container">
+        <input type="submit" value="Create user" form="create-form"/>
+    </div>
+</div>
+
+</body>
+</html>
